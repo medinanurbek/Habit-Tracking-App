@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login • Habit Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body>
+  <div class="toast" id="toast"></div>
+
+  <div class="container"
+    style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+    <div style="text-align:center; margin-bottom:24px;">
+      <h1 style="margin:0 0 8px; font-size:28px;">Habit Tracker</h1>
+      <div style="color:var(--muted); font-size:15px;">Start building better habits today!</div>
+    </div>
+
+    <div class="card form" style="width:100%; max-width:400px;">
+      <h2 style="margin:0 0 6px; text-align:center;">Welcome back</h2>
+      <div class="help" style="text-align:center;">Login to continue your journey</div>
+
+      <div style="height:24px"></div>
+
+      <div class="field">
+        <div class="label">Email</div>
+        <input class="input" id="email" type="email" placeholder="you@example.com" />
+        <div class="err" id="e_email"></div>
+      </div>
+
+      <div class="field">
+        <div class="label">Password</div>
+        <input class="input" id="password" type="password" placeholder="••••••••" />
+        <div class="err" id="e_password"></div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <button class="btn primary" id="submitBtn" style="width:100%; justify-content:center;">Login</button>
+
+      <div style="height:16px"></div>
+
+      <div class="help" style="text-align:center;">
+        No account? <a href="register.html" style="color:var(--primary); font-weight:600;">Register</a>
+      </div>
+    </div>
+
+    <div style="height:40px;"></div>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    initTheme();
+  </script>
+  <script src="assets/auth-pages.js"></script>
+  <script>
+    if (getToken()) location.href = "habits.html";
+    $("#submitBtn").addEventListener("click", handleLogin);
+    $("#password").addEventListener("keydown", (e) => { if (e.key === "Enter") handleLogin(); });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card" style="text-align:center; padding:30px;">
+      <h2 style="margin:0 0 10px;">Habit Tracker</h2>
+      <p style="margin:0; color:var(--muted)">Redirecting…</p>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    // если есть токен — на habits, иначе — login
+    if (getToken()) location.href = "habits.html";
+    else location.href = "login.html";
+    initTheme();
+  </script>
+</body>
+</html>

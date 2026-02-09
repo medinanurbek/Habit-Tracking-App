@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile • Habit Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body>
+  <div class="toast" id="toast"></div>
+
+  <div class="container">
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="top">
+          <div class="userbox">
+            <div class="avatar">👤</div>
+            <div class="user-meta">
+              <div class="user-name" id="sbName">Guest</div>
+              <div class="user-email" id="sbEmail">Not signed in</div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn small" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+            <button class="btn small" onclick="logoutUI()">Logout</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <a href="habits.html">📋 All Habits</a>
+          <a href="profile.html">👤 Profile</a>
+        </div>
+
+        <div class="section">
+          <div class="section-title">TIME OF DAY</div>
+          <div class="simple-item tod-item" data-tod="Morning">☀️ Morning <span class="dot">• now</span></div>
+          <div class="simple-item tod-item" data-tod="Afternoon">🌤️ Afternoon <span class="dot">• now</span></div>
+          <div class="simple-item tod-item" data-tod="Evening">🌙 Evening <span class="dot">• now</span></div>
+        </div>
+
+        <div class="bottom">
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <section class="main">
+        <div class="topbar">
+          <div class="title">
+            <h1>Profile</h1>
+            <div class="subtitle">Account info & update</div>
+          </div>
+          <div class="row">
+            <a class="btn" href="habits.html">← Back to habits</a>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="card form" style="max-width:680px;">
+            <div class="panel" style="margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                <div>
+                  <div style="font-weight:800;">Account details</div>
+                  <div class="help">Created: <span id="createdAt">—</span></div>
+                </div>
+                <div class="badge primary">JWT enabled</div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="label">Username</div>
+              <input class="input" id="username" />
+              <div class="err" id="e_username"></div>
+            </div>
+
+            <div class="field">
+              <div class="label">Email</div>
+              <input class="input" id="email" type="email" />
+              <div class="err" id="e_email"></div>
+            </div>
+
+            <div class="row">
+              <button class="btn primary" id="saveBtn">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    initTheme();
+  </script>
+  <script src="assets/profile.js"></script>
+  <script>
+    loadProfile();
+    $("#saveBtn").addEventListener("click", saveProfile);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Habits • Habit Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body>
+  <div class="toast" id="toast"></div>
+
+  <div class="container">
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="top">
+          <div class="userbox">
+            <div class="avatar">👤</div>
+            <div class="user-meta">
+              <div class="user-name" id="sbName">Guest</div>
+              <div class="user-email" id="sbEmail">Not signed in</div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn small" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+            <button class="btn small" onclick="logoutUI()">Logout</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <a href="habits.html">📋 All Habits</a>
+          <a href="profile.html">👤 Profile</a>
+        </div>
+
+        <div class="section">
+          <div class="section-title">TIME OF DAY</div>
+          <div class="simple-item tod-item" data-tod="Morning">☀️ Morning <span class="dot">• now</span></div>
+          <div class="simple-item tod-item" data-tod="Afternoon">🌤️ Afternoon <span class="dot">• now</span></div>
+          <div class="simple-item tod-item" data-tod="Evening">🌙 Evening <span class="dot">• now</span></div>
+        </div>
+
+        <div class="bottom">
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <section class="main">
+        <div class="topbar">
+          <div class="title">
+            <h1>Today</h1>
+            <div class="subtitle">
+              <span>📅</span>
+              <span id="count">0 habits</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <input class="input" id="search" placeholder="Search habits…" />
+
+            <!-- Time dropdown -->
+            <div class="dd" id="ddTime">
+              <button class="dd-btn" type="button" id="timeBtn">
+                All day ▾
+              </button>
+              <div class="dd-menu" id="timeMenu"></div>
+            </div>
+
+            <!-- Area dropdown -->
+            <div class="dd" id="ddArea">
+              <button class="dd-btn" type="button" id="areaBtn">
+                All ▾
+              </button>
+              <div class="dd-menu" id="areaMenu"></div>
+            </div>
+
+            <button class="btn" id="toggleView">
+              <span id="viewBtn">List</span>
+            </button>
+
+            <a class="btn primary" href="habit-form.html">＋ Add habit</a>
+          </div>
+        </div>
+
+        <div class="content">
+          <div id="habitsWrap" class="grid"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- bottom action bar -->
+  <div class="bar" id="bar" style="display:none;">
+    <div class="bar-inner">
+      <div class="bar-left" style="min-width:0;">
+        <div class="bar-title" id="barTitle">Selected habit</div>
+        <div class="bar-sub" id="barSub">—</div>
+      </div>
+      <div class="row" style="justify-content:flex-end;">
+        <a class="btn small" id="barEdit">✏️ Edit</a>
+        <button class="btn small ok" id="barDone">✓ Complete</button>
+        <button class="btn small" id="barUndo">↺ Undo</button>
+        <button class="btn small danger" id="barDelete">🗑 Delete</button>
+        <button class="btn small ghost" id="barClear">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    initTheme();
+  </script>
+  <script src="assets/habits.js"></script>
+  <script>
+    requireAuth();
+    loadHabits();
+
+    $("#search").addEventListener("input", (e) => { state.query = e.target.value; render(); });
+    $("#toggleView").addEventListener("click", () => {
+      state.view = (state.view === "list") ? "grid" : "list";
+      render();
+    });
+  </script>
+</body>
+
+</html>

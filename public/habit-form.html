@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Habit Form • Habit Tracker</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body>
+  <div class="toast" id="toast"></div>
+
+  <div class="container">
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="top">
+          <div class="userbox">
+            <div class="avatar">👤</div>
+            <div class="user-meta">
+              <div class="user-name" id="sbName">Guest</div>
+              <div class="user-email" id="sbEmail">Not signed in</div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn small" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button>
+            <button class="btn small" onclick="logoutUI()">Logout</button>
+          </div>
+        </div>
+
+        <div class="nav">
+          <a href="habits.html">📋 All Habits</a>
+          <a href="profile.html">👤 Profile</a>
+        </div>
+
+        <div class="section">
+          <div class="section-title">TIME OF DAY</div>
+          <div class="simple-item tod-item" data-tod="Morning">☀️ Morning <span class="dot">• now</span></div>
+          <div class="simple-item tod-item" data-tod="Afternoon">🌤️ Afternoon <span class="dot">• now</span></div>
+          <div class="simple-item tod-item" data-tod="Evening">🌙 Evening <span class="dot">• now</span></div>
+        </div>
+
+        <div class="bottom">
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <section class="main">
+        <div class="topbar">
+          <div class="title">
+            <h1 id="pageTitle">Create Habit</h1>
+            <div class="subtitle">Create or edit your habit</div>
+          </div>
+          <div class="row">
+            <a class="btn" href="habits.html">← Back</a>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="card form">
+            <div class="field">
+              <div class="label">Title</div>
+              <input class="input" id="title" placeholder="e.g. Meditate" />
+              <div class="err" id="e_title"></div>
+            </div>
+
+            <div class="field">
+              <div class="label">Description</div>
+              <input class="input" id="description" placeholder="optional" />
+            </div>
+
+            <div class="grid cols-2">
+              <div class="field">
+                <div class="label">Area</div>
+                <select class="select" id="area">
+                  <option>General</option>
+                  <option>Health</option>
+                  <option>Mind</option>
+                  <option>Study</option>
+                  <option>Fitness</option>
+                  <option>Work</option>
+                </select>
+                <div class="err" id="e_area"></div>
+              </div>
+
+              <div class="field">
+                <div class="label">Time of day</div>
+                <select class="select" id="timeOfDay">
+                  <option>Morning</option>
+                  <option>Afternoon</option>
+                  <option>Evening</option>
+                </select>
+                <div class="err" id="e_tod"></div>
+              </div>
+            </div>
+
+            <div class="grid cols-2">
+              <div class="field">
+                <div class="label">Target per day</div>
+                <input class="input" id="targetPerDay" type="number" min="1" step="1" value="1" />
+                <div class="err" id="e_target"></div>
+              </div>
+
+              <div class="field">
+                <div class="label">Icon</div>
+                <select class="select" id="icon">
+                  <option value="flame">🔥 flame</option>
+                  <option value="moon">🧘‍♀️ meditate</option>
+                  <option value="droplet">💧 water</option>
+                  <option value="book">📚 book</option>
+                  <option value="run">🏃‍♀️ run</option>
+                  <option value="gym">🏋️ gym</option>
+                  <option value="timer">⏱️ timer</option>
+                  <option value="heart">❤️ heart</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="panel" style="margin-top:8px;">
+              <label style="display:flex; gap:10px; align-items:center;">
+                <input type="checkbox" id="archived" />
+                <span class="help">Archive (hide from dashboard)</span>
+              </label>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div class="row">
+              <button class="btn primary" id="submitBtn">Create habit</button>
+              <a class="btn" href="habits.html">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    initTheme();
+  </script>
+  <script src="assets/form.js"></script>
+  <script>
+    initHabitForm();
+    $("#submitBtn").addEventListener("click", submitHabit);
+  </script>
+</body>
+
+</html>
